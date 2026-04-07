@@ -3,7 +3,7 @@
 
 #include "backend/sourcemanager.h"
 #include <Daemon>
-#include <AppStreamQt5/component.h>
+#include <AppStreamQt/component.h>
 
 class PackageKitSource : public Source
 {

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.16)
 
 project(dde-store)
 
@@ -10,21 +10,16 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(PkgConfig REQUIRED)
-find_package(Qt5 REQUIRED Core Widgets Network DBus Gui LinguistTools)
-find_package(Dtk REQUIRED Widget Gui)
-find_package(PackageKitQt5 REQUIRED)
-find_package(AppStreamQt5 1.0 REQUIRED)
+find_package(Qt6 REQUIRED Core Widgets Network DBus Gui LinguistTools)
+find_package(Dtk6 REQUIRED Widget Gui)
+find_package(PackageKitQt6 REQUIRED)
+find_package(AppStreamQt 1.0 REQUIRED)
 find_package(PkgConfig REQUIRED)
 include(FindPkgConfig)
 include(GNUInstallDirs)
 
-include_directories(
-    ${PackageKitQt5_INCLUDE_DIR}
-    ${AppStreamQt5_INCLUDE_DIRS}
-)
-
 file(GLOB TS_FILES ./translations/*.ts)
-qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 file(GLOB SRC
     main.cpp
@@ -61,19 +56,14 @@ add_executable(${PROJECT_NAME}
     ${QM_FILES}
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
-    ${PackageKitQt5_INCLUDE_DIR}
-    ${AppStreamQt5_INCLUDE_DIRS}
-)
-
 target_link_libraries(${PROJECT_NAME}
-    ${DtkWidget_LIBRARIES}
-    ${DtkCore_LIBRARIES}
-    ${DtkGui_LIBRARIES}
-    ${Qt5Widgets_LIBRARIES}
-    ${Qt5Network_LIBRARIES}
-    ${PackageKitQt5_LIBRARIES}
-    AppStreamQt5
+    Dtk6::Widget
+    Dtk6::Core
+    Dtk6::Gui
+    Qt6::Widgets
+    Qt6::Network
+    PK::packagekitqt6
+    AppStreamQt
 )
 
 add_subdirectory(backend/sources)

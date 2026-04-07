@@ -14,7 +14,7 @@ List::List(QString title)
     headerLayout->addWidget(titleLabel);
     headerLayout->addStretch();
     headerLayout->setSpacing(10);
-    headerLayout->setMargin(10);
+    headerLayout->setContentsMargins(10, 10, 10, 10);
     layout->addLayout(headerLayout);
 
     listView = new DListView;

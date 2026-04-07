@@ -7,7 +7,7 @@ stars::stars(QString app)
 {
     QHBoxLayout *layout = new QHBoxLayout;
     this->setLayout(layout);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setAlignment(Qt::AlignLeft);
     double rating = RatingsHelper::instance()->averageRating(app);
     for (int i = 0; i < int(rating); i++) {

@@ -2,11 +2,12 @@
 #include "backend/settings.h"
 #include "backend/ratingshelper.h"
 #include <Details>
-#include <AppStreamQt5/pool.h>
-#include <AppStreamQt5/icon.h>
-#include <AppStreamQt5/screenshot.h>
-#include <AppStreamQt5/image.h>
-#include <AppStreamQt5/developer.h>
+#include <QRegularExpression>
+#include <AppStreamQt/pool.h>
+#include <AppStreamQt/icon.h>
+#include <AppStreamQt/screenshot.h>
+#include <AppStreamQt/image.h>
+#include <AppStreamQt/developer.h>
 
 using namespace PackageKit;
 using namespace AppStream;
@@ -195,7 +196,7 @@ void PackageKitSource::search(QString query)
             break;
         Component component = metadata.value(key);
         bool noMatch = false;
-        for (QString item : query.split(QRegExp("\\s"), Qt::SkipEmptyParts)) {
+        for (QString item : query.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts)) {
             if (!component.name().contains(item, Qt::CaseInsensitive) && !component.description().contains(item, Qt::CaseInsensitive))
                 noMatch = true;
         }

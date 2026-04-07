@@ -26,7 +26,7 @@ HomePage::HomePage(MainWindow *parent)
     layout->setAlignment(Qt::AlignTop);
     widget->setLayout(layout);
     QHBoxLayout *mainLayout = new QHBoxLayout;
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     setLayout(mainLayout);
     mainLayout->addWidget(scroll);
@@ -65,7 +65,7 @@ void HomePage::addCategory(QString name, QString category, MainWindow *parent)
             for (App *app : map.values()) {
                 items.insert(0, app);
             }
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < qMin(10, items.size()); i++) {
                 list->addItem(items[i]->name, items[i]->icon, i);
                 apps->append(items[i]);
             }

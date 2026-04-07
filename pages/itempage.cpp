@@ -21,7 +21,7 @@ ItemPage::ItemPage(App *app)
     this->app = app;
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
-    mainLayout->setMargin(0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
     mainLayout->setSpacing(0);
     setLayout(mainLayout);
     mainLayout->addWidget(scroll);
@@ -48,7 +48,7 @@ void ItemPage::load()
     spinner->hide();
     layout->removeWidget(spinner);
     QHBoxLayout *header = new QHBoxLayout;
-    header->setMargin(10);
+    header->setContentsMargins(10, 10, 10, 10);
     header->setAlignment(Qt::AlignVCenter);
 
     QLabel *icon = new QLabel;
@@ -56,7 +56,7 @@ void ItemPage::load()
     header->addWidget(icon);
 
     QVBoxLayout *nameSection = new QVBoxLayout;
-    nameSection->setMargin(0);
+    nameSection->setContentsMargins(0, 0, 0, 0);
     nameSection->setAlignment(Qt::AlignTop);
 
     DLabel *name = new DLabel(app->name);
